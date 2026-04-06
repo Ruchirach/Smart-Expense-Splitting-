@@ -1,0 +1,5 @@
+com\example\smartexpensesplitter\controller\ExpenseController.class
+com\example\smartexpensesplitter\service\ExpenseService.class
+com\example\smartexpensesplitter\model\Expense.class
+com\example\smartexpensesplitter\SmartExpenseSplitterApplication.class
+com\example\smartexpensesplitter\repository\ExpenseRepository.class

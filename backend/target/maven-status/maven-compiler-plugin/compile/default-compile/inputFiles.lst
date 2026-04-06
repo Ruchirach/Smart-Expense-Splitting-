@@ -1,0 +1,15 @@
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\model\AppUser.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\repository\AppUserRepository.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\dto\AuthResponse.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\controller\ExpenseController.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\security\JwtAuthFilter.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\security\CustomUserDetailsService.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\dto\LoginRequest.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\security\JwtService.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\model\Expense.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\config\SecurityConfig.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\SmartExpenseSplitterApplication.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\controller\AuthController.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\service\ExpenseService.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\repository\ExpenseRepository.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\dto\RegisterRequest.java
