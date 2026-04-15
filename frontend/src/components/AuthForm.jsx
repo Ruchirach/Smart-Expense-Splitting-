@@ -13,7 +13,8 @@ function AuthForm({ apiBase, onAuthSuccess }) {
     e.preventDefault();
     setError(null);
 
-    const endpoint = isLogin ? '/auth/login' : '/auth/register';
+   
+   const endpoint = isLogin ? '/auth/login' : '/auth/register';
 
     try {
       const res = await fetch(`${apiBase}${endpoint}`, {
