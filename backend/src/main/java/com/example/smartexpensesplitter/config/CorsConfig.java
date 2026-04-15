@@ -14,7 +14,7 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins(
-                                "http://localhost:3000",
+                                "https://smart-expense-splitting-u44z.onrender.com",
                                 "https://smart-expense-splitting.onrender.com"
                         )
                         .allowedMethods("*")
