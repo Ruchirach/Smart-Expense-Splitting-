@@ -5,7 +5,6 @@ function AuthForm({ apiBase, onAuthSuccess }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
   const isLogin = mode === 'login';
@@ -14,106 +13,69 @@ function AuthForm({ apiBase, onAuthSuccess }) {
     e.preventDefault();
     setError(null);
 
-    if (!email || !password || (!isLogin && !name)) {
-      setError('Please fill in all required fields.');
-      return;
-    }
-
     const endpoint = isLogin ? '/auth/login' : '/auth/register';
-    const payload = isLogin
-      ? { email, password }
-      : { name, email, password };
 
     try {
-      setSubmitting(true);
       const res = await fetch(`${apiBase}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(
+          isLogin
+            ? { email, password }
+            : { name, email, password }
+        )
       });
 
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || 'Authentication failed');
+      const text = await res.text();
+
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error('Invalid server response');
       }
 
-      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message || 'Auth failed');
+      }
+
       onAuthSuccess(data);
     } catch (err) {
       setError(err.message);
-    } finally {
-      setSubmitting(false);
     }
   };
 
   return (
     <div>
-      <div className="auth-tabs">
-        <button
-          className={`tab-button ${isLogin ? 'active' : ''}`}
-          onClick={() => {
-            setMode('login');
-            setError(null);
-          }}
-          type="button"
-        >
-          Login
-        </button>
-        <button
-          className={`tab-button ${!isLogin ? 'active' : ''}`}
-          onClick={() => {
-            setMode('register');
-            setError(null);
-          }}
-          type="button"
-        >
-          Register
-        </button>
-      </div>
+      <button onClick={() => setMode('login')}>Login</button>
+      <button onClick={() => setMode('register')}>Register</button>
 
-      <form className="form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         {!isLogin && (
-          <div className="form-row">
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Your name"
-            />
-          </div>
+          <input
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         )}
 
-        <div className="form-row">
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-          />
-        </div>
+        <input
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-        <div className="form-row">
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="At least 6 characters"
-          />
-        </div>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-        {error && <div className="form-error">{error}</div>}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
 
-        <button className="primary-button" type="submit" disabled={submitting}>
-          {submitting
-            ? isLogin
-              ? 'Logging in...'
-              : 'Registering...'
-            : isLogin
-            ? 'Login'
-            : 'Create Account'}
+        <button type="submit">
+          {isLogin ? 'Login' : 'Register'}
         </button>
       </form>
     </div>
@@ -121,4 +83,3 @@ function AuthForm({ apiBase, onAuthSuccess }) {
 }
 
 export default AuthForm;
-
