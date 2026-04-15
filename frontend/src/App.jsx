@@ -4,7 +4,7 @@ import ExpenseList from './components/ExpenseList';
 import BalanceSummary from './components/BalanceSummary';
 import AuthForm from './components/AuthForm';
 
-const API_BASE = 'http://localhost:8080';
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -66,9 +66,9 @@ function App() {
   };
 
   const fetchCurrentUser = async () => {
-    if (!token) {
-      return;
-    }
+   if (!token) {
+  return <Login />;
+}
 
     try {
       const res = await fetch(`${API_BASE}/auth/me`, {

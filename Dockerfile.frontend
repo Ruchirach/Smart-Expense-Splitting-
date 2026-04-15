@@ -1,0 +1,27 @@
+FROM node:18
+
+WORKDIR /app
+
+# Copy only package files
+COPY frontend/package*.json ./
+
+# Install ALL dependencies (force devDependencies)
+RUN npm install --include=dev
+
+# Copy rest of code
+COPY frontend/ .
+
+# Ensure vite is accessible
+RUN ls node_modules/.bin
+
+# Build using npx (guaranteed)
+RUN npx vite build
+
+# Production server
+FROM nginx:alpine
+
+COPY --from=0 /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
