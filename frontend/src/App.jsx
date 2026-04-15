@@ -4,7 +4,8 @@ import ExpenseList from './components/ExpenseList';
 import BalanceSummary from './components/BalanceSummary';
 import AuthForm from './components/AuthForm';
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080';
+// ✅ Use correct env variable (for Render)
+const API_BASE = import.meta.env.VITE_API_URL;
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -16,24 +17,53 @@ function App() {
   const [loadingExpenses, setLoadingExpenses] = useState(false);
   const [loadingBalances, setLoadingBalances] = useState(false);
   const [error, setError] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const authHeaders = token
     ? { Authorization: `Bearer ${token}` }
     : {};
 
+  // ✅ Verify token with backend
+  const verifyUser = async () => {
+    if (!token) {
+      setIsAuthenticated(false);
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_BASE}/auth/me`, {
+        headers: authHeaders
+      });
+
+      if (!res.ok) throw new Error();
+
+      const data = await res.json();
+
+      setCurrentUser(data.name);
+      localStorage.setItem('userName', data.name);
+      localStorage.setItem('userEmail', data.email);
+
+      setIsAuthenticated(true);
+    } catch {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('userEmail');
+      setToken(null);
+      setIsAuthenticated(false);
+    }
+  };
+
   const fetchExpenses = async () => {
     try {
       setLoadingExpenses(true);
       setError(null);
+
       const res = await fetch(`${API_BASE}/expenses`, {
         headers: authHeaders
       });
-      if (!res.ok) {
-        if (res.status === 401) {
-          throw new Error('Your session expired. Please log in again.');
-        }
-        throw new Error('Failed to fetch expenses');
-      }
+
+      if (!res.ok) throw new Error('Failed to fetch expenses');
+
       const data = await res.json();
       setExpenses(data);
     } catch (e) {
@@ -47,15 +77,13 @@ function App() {
     try {
       setLoadingBalances(true);
       setError(null);
+
       const res = await fetch(`${API_BASE}/expenses/balances`, {
         headers: authHeaders
       });
-      if (!res.ok) {
-        if (res.status === 401) {
-          throw new Error('Your session expired. Please log in again.');
-        }
-        throw new Error('Failed to fetch balances');
-      }
+
+      if (!res.ok) throw new Error('Failed to fetch balances');
+
       const data = await res.json();
       setBalances(data);
     } catch (e) {
@@ -65,40 +93,16 @@ function App() {
     }
   };
 
-  const fetchCurrentUser = async () => {
-   if (!token) {
-  return <Login />;
-}
-
-    try {
-      const res = await fetch(`${API_BASE}/auth/me`, {
-        headers: authHeaders
-      });
-
-      if (!res.ok) {
-        return;
-      }
-
-      const data = await res.json();
-      if (data?.name) {
-        setCurrentUser(data.name);
-        localStorage.setItem('userName', data.name);
-      }
-      if (data?.email) {
-        localStorage.setItem('userEmail', data.email);
-      }
-    } catch (e) {
-      // Keep UI usable even if this optional profile call fails.
-    }
-  };
+  useEffect(() => {
+    verifyUser();
+  }, [token]);
 
   useEffect(() => {
-    if (token) {
-      fetchCurrentUser();
+    if (isAuthenticated) {
       fetchExpenses();
       fetchBalances();
     }
-  }, [token]);
+  }, [isAuthenticated]);
 
   const handleExpenseAdded = () => {
     fetchExpenses();
@@ -109,25 +113,32 @@ function App() {
     localStorage.setItem('token', authData.token);
     localStorage.setItem('userName', authData.name);
     localStorage.setItem('userEmail', authData.email);
+
     setToken(authData.token);
     setCurrentUser(authData.name);
+    setIsAuthenticated(true);
   };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
     localStorage.removeItem('userEmail');
+
     setToken(null);
     setCurrentUser('');
     setExpenses([]);
     setBalances({});
+    setIsAuthenticated(false);
   };
 
- 
+  // 🔥 IMPORTANT: Show login/register if NOT authenticated
+  if (!isAuthenticated) {
+    return <AuthForm onAuthSuccess={handleAuthSuccess} />;
+  }
 
   return (
     <div className="app-container">
-      <header className="app-header">z
+      <header className="app-header">
         <div className="header-top">
           <span className="user-pill">
             {currentUser || 'Loading...'}
@@ -172,11 +183,10 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <small>Backend: `http://localhost:8080` · Frontend: `http://localhost:3000`</small>
+        <small>Live App (Deployed on Render)</small>
       </footer>
     </div>
   );
 }
 
 export default App;
-
