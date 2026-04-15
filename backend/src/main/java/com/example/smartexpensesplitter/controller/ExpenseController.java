@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/expenses")
-@CrossOrigin(origins = "https://smart-expense-splitting-u44z.onrender.com")
+@CrossOrigin(origins = "*")
 public class ExpenseController {
 
     private final ExpenseService expenseService;

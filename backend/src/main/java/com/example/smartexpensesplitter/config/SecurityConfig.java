@@ -76,7 +76,7 @@ public class SecurityConfig {
 public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.setAllowedOrigins(List.of(
-        "https://smart-expense-splitting-u44z.onrender.com"
+        "*"
         
     ));
     configuration.setAllowedMethods(List.of("*"));
