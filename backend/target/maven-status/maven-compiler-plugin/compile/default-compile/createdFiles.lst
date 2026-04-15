@@ -10,6 +10,7 @@ com\example\smartexpensesplitter\model\AppUser.class
 com\example\smartexpensesplitter\dto\RegisterRequest.class
 com\example\smartexpensesplitter\model\Expense.class
 com\example\smartexpensesplitter\SmartExpenseSplitterApplication.class
+com\example\smartexpensesplitter\controller\TempController.class
 com\example\smartexpensesplitter\security\JwtAuthFilter.class
 com\example\smartexpensesplitter\dto\LoginRequest.class
 com\example\smartexpensesplitter\repository\ExpenseRepository.class

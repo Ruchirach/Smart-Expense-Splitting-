@@ -1,4 +1,3 @@
-C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\config\CorsConfig.java
 C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\model\AppUser.java
 C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\repository\AppUserRepository.java
 C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\dto\AuthResponse.java
@@ -8,6 +7,7 @@ C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\ex
 C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\dto\LoginRequest.java
 C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\security\JwtService.java
 C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\model\Expense.java
+C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\controller\TempController.java
 C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\config\SecurityConfig.java
 C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\SmartExpenseSplitterApplication.java
 C:\Users\ruchi\OneDrive\Documents\Desktop\splitting\backend\src\main\java\com\example\smartexpensesplitter\controller\AuthController.java

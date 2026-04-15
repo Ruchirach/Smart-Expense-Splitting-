@@ -19,7 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "https://smart-expense-splitting-u44z.onrender.com")
+@CrossOrigin(origins= "*")
 public class AuthController {
 
     private final AppUserRepository userRepository;
