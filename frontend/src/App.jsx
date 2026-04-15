@@ -123,25 +123,11 @@ function App() {
     setBalances({});
   };
 
-  if (!token) {
-    return (
-      <div className="app-container">
-        <header className="app-header">
-          <h1>Smart Expense Splitter</h1>
-          <p>Register or log in to manage your expenses.</p>
-        </header>
-        <main className="auth-main">
-          <section className="card auth-card">
-            <AuthForm apiBase={API_BASE} onAuthSuccess={handleAuthSuccess} />
-          </section>
-        </main>
-      </div>
-    );
-  }
+ 
 
   return (
     <div className="app-container">
-      <header className="app-header">
+      <header className="app-header">z
         <div className="header-top">
           <span className="user-pill">
             {currentUser || 'Loading...'}

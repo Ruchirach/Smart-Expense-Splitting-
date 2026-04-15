@@ -1,5 +1,15 @@
+com\example\smartexpensesplitter\security\CustomUserDetailsService.class
 com\example\smartexpensesplitter\controller\ExpenseController.class
+com\example\smartexpensesplitter\config\SecurityConfig.class
+com\example\smartexpensesplitter\dto\AuthResponse.class
+com\example\smartexpensesplitter\security\JwtService.class
 com\example\smartexpensesplitter\service\ExpenseService.class
+com\example\smartexpensesplitter\repository\AppUserRepository.class
+com\example\smartexpensesplitter\controller\AuthController.class
+com\example\smartexpensesplitter\model\AppUser.class
+com\example\smartexpensesplitter\dto\RegisterRequest.class
 com\example\smartexpensesplitter\model\Expense.class
 com\example\smartexpensesplitter\SmartExpenseSplitterApplication.class
+com\example\smartexpensesplitter\security\JwtAuthFilter.class
+com\example\smartexpensesplitter\dto\LoginRequest.class
 com\example\smartexpensesplitter\repository\ExpenseRepository.class
