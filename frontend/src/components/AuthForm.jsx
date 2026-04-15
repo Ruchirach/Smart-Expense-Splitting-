@@ -17,7 +17,7 @@ function AuthForm({ apiBase, onAuthSuccess }) {
    const endpoint = isLogin ? '/auth/login' : '/auth/register';
 
     try {
-      const res = await fetch(`${apiBase}${endpoint}`, {
+      const res = await fetch(`https://splitting-backend.onrender.com${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(
